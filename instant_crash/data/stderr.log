@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "run.py", line 8, in <module>
+    from instant_crash import instant_crash
+  File "c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\instant_crash\instant_crash.py", line 3, in <module>
+    import non_existing_library
+ModuleNotFoundError: No module named 'non_existing_library'

@@ -1,0 +1,11 @@
+{
+  "Bots": {
+    "instant_crash": {
+      "Race": "Terran",
+      "Type": "Python",
+      "RootPath": "./",
+      "FileName": "run.py",
+	  "Debug": true
+    }
+  }
+}

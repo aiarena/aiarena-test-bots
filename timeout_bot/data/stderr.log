@@ -1,0 +1,9 @@
+Starting ladder game...
+INFO:sc2.protocol:Client status changed to Status.in_game (was None)
+INFO:root:Player 1 - Bot(Race.Terran, <timeout_bot.timeout_bot object at 0x00000226AC3599E8>)
+INFO:sc2.protocol:Client status changed to Status.ended (was Status.in_game)
+INFO:root:Result for player 1 - Bot(Race.Terran, <timeout_bot.timeout_bot object at 0x000001C7A1F999E8>): Tie
+c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\timeout_bot\__init__.py:85: RuntimeWarning: coroutine 'ClientWebSocketResponse.close' was never awaited
+  ws_connection.close()
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Result.Tie  against opponent  123

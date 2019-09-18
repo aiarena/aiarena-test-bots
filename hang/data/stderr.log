@@ -1,0 +1,51 @@
+Starting ladder game...
+C:\Users\danie\AppData\Local\Programs\Python\Python37\lib\site-packages\aiohttp\client.py:310: ResourceWarning: Unclosed client session <aiohttp.client.ClientSession object at 0x000001D906BB1898>
+  **kwargs)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ERROR:asyncio:Unclosed client session
+client_session: <aiohttp.client.ClientSession object at 0x000001D906BB1898>
+INFO:sc2.protocol:Cannot receive: Connection already closed.
+c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\hang\__init__.py:85: RuntimeWarning: coroutine 'ClientWebSocketResponse.close' was never awaited
+  ws_connection.close()
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Traceback (most recent call last):
+  File "c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\hang\sc2\protocol.py", line 41, in __request
+    response_bytes = await self._ws.receive_bytes()
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python37\lib\site-packages\aiohttp\client_ws.py", line 283, in receive_bytes
+    msg.data))
+TypeError: Received message 8:1000 is not bytes
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\hang\__init__.py", line 76, in join_ladder_game
+    result = await sc2.main._play_game(players[0], client, realtime, portconfig, step_time_limit, game_time_limit)
+  File "c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\hang\sc2\main.py", line 216, in _play_game
+    player.name, player.race, portconfig=portconfig, rgb_render_config=rgb_render_config
+  File "c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\hang\sc2\client.py", line 83, in join_game
+    result = await self._execute(join_game=req)
+  File "c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\hang\sc2\protocol.py", line 65, in _execute
+    response = await self.__request(request)
+  File "c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\hang\sc2\protocol.py", line 46, in __request
+    sys.exit(2)
+SystemExit: 2
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "run.py", line 17, in <module>
+    result, opponentid = run_ladder_game(bot)
+  File "c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\hang\__init__.py", line 67, in run_ladder_game
+    result = asyncio.get_event_loop().run_until_complete(g)
+  File "C:\Users\danie\AppData\Local\Programs\Python\Python37\lib\asyncio\base_events.py", line 584, in run_until_complete
+    return future.result()
+  File "c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\hang\__init__.py", line 81, in join_ladder_game
+    except ConnectionAlreadyClosed:
+NameError: name 'ConnectionAlreadyClosed' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "run.py", line 30, in <module>
+    f.write(str(exc_type)+" "+fname+" "+ exc_tb.tb_lineno)
+TypeError: can only concatenate str (not "int") to str

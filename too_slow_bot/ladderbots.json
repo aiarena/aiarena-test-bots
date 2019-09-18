@@ -1,0 +1,11 @@
+{
+  "Bots": {
+    "too_slow_bot": {
+      "Race": "Terran",
+      "Type": "Python",
+      "RootPath": "./",
+      "FileName": "run.py",
+	  "Debug": true
+    }
+  }
+}

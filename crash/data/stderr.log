@@ -1,0 +1,16 @@
+Starting ladder game...
+INFO:sc2.protocol:Client status changed to Status.in_game (was None)
+INFO:root:Player 2 - Bot(Race.Terran, <crash.crash object at 0x0000025EEE409A90>)
+ERROR:sc2.main:AI step threw an error
+Traceback (most recent call last):
+  File "c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\crash\sc2\main.py", line 150, in _play_game_ai
+    await ai.on_step(iteration)
+  File "c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\crash\crash.py", line 19, in on_step
+    import non_existing_library
+ModuleNotFoundError: No module named 'non_existing_library'
+ERROR:sc2.main:resigning due to previous error
+INFO:root:Result for player 2 - Bot(Race.Terran, <crash.crash object at 0x0000025EEE409A90>): Defeat
+c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\crash\__init__.py:85: RuntimeWarning: coroutine 'ClientWebSocketResponse.close' was never awaited
+  ws_connection.close()
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Result.Defeat  against opponent  321

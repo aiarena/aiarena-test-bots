@@ -1,0 +1,9 @@
+Starting ladder game...
+INFO:sc2.protocol:Client status changed to Status.in_game (was None)
+INFO:root:Player 2 - Bot(Race.Terran, <loser_bot.loser_bot object at 0x000001DD63147518>)
+INFO:sc2.protocol:Client status changed to Status.ended (was Status.in_game)
+INFO:root:Result for player 2 - Bot(Race.Terran, <loser_bot.loser_bot object at 0x000001DD63147518>): Defeat
+c:\Users\danie\Desktop\aiarena-client\aiarena-client\Bots\loser_bot\__init__.py:85: RuntimeWarning: coroutine 'ClientWebSocketResponse.close' was never awaited
+  ws_connection.close()
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+Result.Defeat  against opponent  321
