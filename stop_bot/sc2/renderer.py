@@ -1,15 +1,13 @@
 import datetime
 
-from s2clientprotocol import (
-    score_pb2 as score_pb,
-)
+from s2clientprotocol import score_pb2 as score_pb
 
-from .position import Point2
+from sc2.position import Point2
 
 
-class Renderer(object):
+class Renderer:
 
-    def __init__(self, client, map_size, minimap_size) -> None:
+    def __init__(self, client, map_size, minimap_size):
         self._client = client
 
         self._window = None
@@ -39,50 +37,78 @@ class Renderer(object):
         minimap_pitch = -minimap_width * 3
 
         if not self._window:
-            from pyglet.window import Window
+            # pylint: disable=C0415
             from pyglet.image import ImageData
             from pyglet.text import Label
+            from pyglet.window import Window
+
             self._window = Window(width=map_width, height=map_height)
             self._window.on_mouse_press = self._on_mouse_press
             self._window.on_mouse_release = self._on_mouse_release
             self._window.on_mouse_drag = self._on_mouse_drag
-            self._map_image = ImageData(map_width, map_height, 'RGB', map_data, map_pitch)
-            self._minimap_image = ImageData(minimap_width, minimap_height, 'RGB', minimap_data,
-                                            minimap_pitch)
+            self._map_image = ImageData(map_width, map_height, "RGB", map_data, map_pitch)
+            self._minimap_image = ImageData(minimap_width, minimap_height, "RGB", minimap_data, minimap_pitch)
             self._text_supply = Label(
-                '', font_name='Arial', font_size=16, anchor_x='right', anchor_y='top',
-                x=self._map_size[0] - 10, y=self._map_size[1] - 10, color=(200, 200, 200, 255)
+                "",
+                font_name="Arial",
+                font_size=16,
+                anchor_x="right",
+                anchor_y="top",
+                x=self._map_size[0] - 10,
+                y=self._map_size[1] - 10,
+                color=(200, 200, 200, 255),
             )
             self._text_vespene = Label(
-                '', font_name='Arial', font_size=16, anchor_x='right', anchor_y='top',
-                x=self._map_size[0] - 130, y=self._map_size[1] - 10, color=(28, 160, 16, 255)
+                "",
+                font_name="Arial",
+                font_size=16,
+                anchor_x="right",
+                anchor_y="top",
+                x=self._map_size[0] - 130,
+                y=self._map_size[1] - 10,
+                color=(28, 160, 16, 255),
             )
             self._text_minerals = Label(
-                '', font_name='Arial', font_size=16, anchor_x='right', anchor_y='top',
-                x=self._map_size[0] - 200, y=self._map_size[1] - 10, color=(68, 140, 255, 255)
+                "",
+                font_name="Arial",
+                font_size=16,
+                anchor_x="right",
+                anchor_y="top",
+                x=self._map_size[0] - 200,
+                y=self._map_size[1] - 10,
+                color=(68, 140, 255, 255),
             )
             self._text_score = Label(
-                '', font_name='Arial', font_size=16, anchor_x='left', anchor_y='top',
-                x=10, y=self._map_size[1] - 10, color=(219, 30, 30, 255)
+                "",
+                font_name="Arial",
+                font_size=16,
+                anchor_x="left",
+                anchor_y="top",
+                x=10,
+                y=self._map_size[1] - 10,
+                color=(219, 30, 30, 255),
             )
             self._text_time = Label(
-                '', font_name='Arial', font_size=16, anchor_x='right', anchor_y='bottom',
-                x=self._minimap_size[0] - 10, y=self._minimap_size[1] + 10, color=(255, 255, 255, 255)
+                "",
+                font_name="Arial",
+                font_size=16,
+                anchor_x="right",
+                anchor_y="bottom",
+                x=self._minimap_size[0] - 10,
+                y=self._minimap_size[1] + 10,
+                color=(255, 255, 255, 255),
             )
         else:
-            self._map_image.set_data('RGB', map_pitch, map_data)
-            self._minimap_image.set_data('RGB', minimap_pitch, minimap_data)
+            self._map_image.set_data("RGB", map_pitch, map_data)
+            self._minimap_image.set_data("RGB", minimap_pitch, minimap_data)
             self._text_time.text = str(datetime.timedelta(seconds=(observation.observation.game_loop * 0.725) // 16))
-            if observation.observation.HasField('player_common'):
-                self._text_supply.text = "{} / {}".format(observation.observation.player_common.food_used,
-                                                          observation.observation.player_common.food_cap)
+            if observation.observation.HasField("player_common"):
+                self._text_supply.text = f"{observation.observation.player_common.food_used} / {observation.observation.player_common.food_cap}"
                 self._text_vespene.text = str(observation.observation.player_common.vespene)
                 self._text_minerals.text = str(observation.observation.player_common.minerals)
-            if observation.observation.HasField('score'):
-                self._text_score.text = "{} score: {}".format(
-                    score_pb._SCORE_SCORETYPE.values_by_number[observation.observation.score.score_type].name,
-                    observation.observation.score.score
-                )
+            if observation.observation.HasField("score"):
+                # pylint: disable=W0212
+                self._text_score.text = f"{score_pb._SCORE_SCORETYPE.values_by_number[observation.observation.score.score_type].name} score: {observation.observation.score.score}"
 
         await self._update_window()
 
@@ -106,21 +132,21 @@ class Renderer(object):
 
         self._window.flip()
 
-    def _on_mouse_press(self, x, y, button, modifiers):
+    def _on_mouse_press(self, x, y, button, _modifiers):
         if button != 1:  # 1: mouse.LEFT
             return
         if x > self._minimap_size[0] or y > self._minimap_size[1]:
             return
         self._mouse_x, self._mouse_y = x, y
 
-    def _on_mouse_release(self, x, y, button, modifiers):
+    def _on_mouse_release(self, x, y, button, _modifiers):
         if button != 1:  # 1: mouse.LEFT
             return
         if x > self._minimap_size[0] or y > self._minimap_size[1]:
             return
         self._mouse_x, self._mouse_y = x, y
 
-    def _on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
+    def _on_mouse_drag(self, x, y, _dx, _dy, buttons, _modifiers):
         if not buttons & 1:  # 1: mouse.LEFT
             return
         if x > self._minimap_size[0] or y > self._minimap_size[1]:
