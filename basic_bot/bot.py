@@ -8,4 +8,4 @@ class TestBot(BotAI):
             for worker in self.workers:
                 worker.attack(self.enemy_start_locations[0])
 
-        self.game_step = 20
+        self.game_step = 100
