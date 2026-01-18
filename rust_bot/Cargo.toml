@@ -1,0 +1,12 @@
+[package]
+name = "rust_bot"
+version = "1.0.0"
+edition = "2021"
+
+[[bin]]
+name = "rust_bot"
+path = "bot.rs"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+rust-sc2 = "1.1.0"
